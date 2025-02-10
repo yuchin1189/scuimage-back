@@ -10,6 +10,7 @@ const schema = new Schema(
       required: [true, 'usernameRequired'],
       minlength: [4, 'usernameTooShort'],
       maxlength: [30, 'usernameTooLong'],
+      unique: true, // 帳號不能用別人取過的
       validate: {
         validator(value) {
           return validator.isAlphanumeric(value)
