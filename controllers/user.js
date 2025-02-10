@@ -7,7 +7,7 @@ export const create = async (req, res) => {
     await User.create(req.body)
     res.status(StatusCodes.OK).json({
       success: true,
-      message: '',
+      message: '註冊成功',
     })
   } catch (error) {
     console.log(error)

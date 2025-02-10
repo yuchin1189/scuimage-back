@@ -20,7 +20,8 @@ const app = express()
 app.use(
   cors({
     origin(origin, callback) {
-      console.log('origin', origin)
+      // 觀察 origin
+      // console.log('origin', origin)
       if (
         origin === undefined ||
         origin.includes('localhost') ||
