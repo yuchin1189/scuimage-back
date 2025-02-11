@@ -32,6 +32,7 @@ export const create = async (req, res) => {
   }
 }
 
+// 從前端（github.io 或 localhost 或 127.0.0.1）過來的請求會到這裡
 export const login = async (req, res) => {
   try {
     // jwt.sign(儲存資料, SECRET, 設定)
@@ -41,7 +42,7 @@ export const login = async (req, res) => {
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
-      // result 回一些前端需要用到的資訊
+      // result 回傳前端所需資訊
       // postman 會收到的 response 就是這些
       result: {
         token,
