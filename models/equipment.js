@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import equipmentStatus from '../enums/equipmentStatus'
+import equipmentStatus from '../enums/equipmentStatus.js'
 
 const schema = new Schema(
   {
@@ -25,12 +25,13 @@ const schema = new Schema(
     },
     status: {
       type: Number,
+      required: [true, 'equipmentStatusRequired'],
       default: equipmentStatus.AVAILABLE,
     },
   },
   {
     versionKey: false,
-    timestamp: true,
+    timestamps: true,
   },
 )
 

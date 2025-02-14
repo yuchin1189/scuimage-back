@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
 import routerUser from './routers/user.js'
+import routerEquipment from './routers/equipment.js'
 import './passport.js'
 import cors from 'cors'
 
@@ -22,6 +23,7 @@ app.use(
     origin(origin, callback) {
       // 觀察 origin
       // console.log('origin', origin)
+      // postman 沒有 origin，測試用
       if (
         origin === undefined ||
         origin.includes('localhost') ||
@@ -48,6 +50,7 @@ app.use((error, req, res, next) => {
 })
 
 app.use('/user', routerUser)
+app.use('/equipment', routerEquipment)
 
 app.listen(process.env.PORT || 4000, () => {
   console.log('✅ 伺服器啟動')
