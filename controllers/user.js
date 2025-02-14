@@ -10,7 +10,7 @@ export const create = async (req, res) => {
       message: '註冊成功',
     })
   } catch (error) {
-    console.log(error)
+    console.log('controllers/user.js create', error)
     if (error.name === 'MongoServerError' && error.code === 11000) {
       // res.status(409) // res.status(400)
       res.status(StatusCodes.CONFLICT).json({
@@ -51,7 +51,7 @@ export const login = async (req, res) => {
       },
     })
   } catch (error) {
-    console.log('controllers/user.js', error)
+    console.log('controllers/user.js login', error)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: 'serverError',
@@ -66,7 +66,44 @@ export const profile = async (req, res) => {
     result: {
       username: req.user.username,
       role: req.user.role,
-      // 沒有要做購物車
     },
   })
+}
+
+export const refresh = async (req, res) => {
+  try {
+    const idx = req.user.tokens.findIndex((token) => token === req.token)
+    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
+    req.user.tokens[idx] = token
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      result: token,
+    })
+  } catch (error) {
+    console.log('controllers/user.js refresh error', error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
+}
+
+export const logout = async (req, res) => {
+  try {
+    const idx = req.user.tokens.findIndex((token) => token === req.token)
+    req.user.tokens.splice(idx, 1)
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+    })
+  } catch (error) {
+    console.log('controllers/user.js logout error', error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
 }
