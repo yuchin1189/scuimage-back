@@ -5,10 +5,10 @@ import upload from '../middlewares/upload.js'
 
 const router = Router()
 
-// middlewares 分別是：
-// 驗證 token
-// 驗證有管理員身分
-// 上傳圖片（不要放在驗證使用者權限前面，不然上傳了才發現權限不足就浪費空間了）
 router.post('/', auth.jwt, auth.admin, upload, equipment.create)
+router.get('/') // 使用者查看上架器材的頁面
+router.get('/all') // 管理員可以看到所有器材
+router.get('/:id') // 單一個器材的頁面
+router.patch('/:id', equipment.edit) // 編輯器材
 
 export default router
