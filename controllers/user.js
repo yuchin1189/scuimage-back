@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 
 export const create = async (req, res) => {
   try {
+    console.log('req.body', req.body)
     await User.create(req.body)
     res.status(StatusCodes.OK).json({
       success: true,
@@ -32,7 +33,7 @@ export const create = async (req, res) => {
   }
 }
 
-// 從前端（github.io 或 localhost 或 127.0.0.1）過來的請求會到這裡
+// 從前端（postman 或 github.io 或 localhost 或 127.0.0.1）過來的請求會到這裡
 export const login = async (req, res) => {
   try {
     // jwt.sign(儲存資料, SECRET, 設定)
@@ -43,8 +44,9 @@ export const login = async (req, res) => {
       success: true,
       message: '',
       // result 回傳前端所需資訊
-      // postman 會收到的 response 就是這些
+      // postman 會看到的 response 就是這些
       result: {
+        // 之後要使用這三個東西的話，會在 res.result 內
         token,
         username: req.user.username,
         role: req.user.role,

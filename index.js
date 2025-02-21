@@ -21,9 +21,8 @@ const app = express()
 app.use(
   cors({
     origin(origin, callback) {
-      // 觀察 origin
-      // console.log('origin', origin)
-      // postman 沒有 origin，測試用
+      // console.log('origin', origin) // 觀察 origin
+      // postman 沒有 origin
       if (
         origin === undefined ||
         origin.includes('localhost') ||
