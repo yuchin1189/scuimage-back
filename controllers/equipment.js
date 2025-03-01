@@ -93,8 +93,9 @@ export const getId = async (req, res) => {
   }
 }
 
-export const edit = async (res, req) => {
+export const edit = async (req, res) => {
   try {
+    console.log(req.params)
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')
 
     req.body.image = req.file?.path // 若編輯時未提供圖片，則 image 欄位 undefined，原本的圖片不變

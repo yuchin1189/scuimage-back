@@ -19,7 +19,7 @@ const schema = new Schema(
       type: String,
       required: [true, 'equipmentCategoryRequired'],
       enum: {
-        values: ['film camera', 'digital camera', 'lens', 'tripod', 'book', 'accessories'],
+        values: ['filmCamera', 'digitalCamera', 'lens', 'tripod', 'book', 'accessories'],
         message: 'equipmentCategoryInvalid',
       },
     },
