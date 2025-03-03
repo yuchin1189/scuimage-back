@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import equipmentStatus from '../enums/equipmentStatus.js'
+import equipmentStatus from '../enums/EquipmentStatus.js'
 
 const schema = new Schema(
   {
