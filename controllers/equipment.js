@@ -55,7 +55,7 @@ export const getAll = async (req, res) => {
       result,
     })
   } catch (error) {
-    console.log('controllers/equipment.js get', error)
+    console.log('controllers/equipment.js getAll', error)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: 'serverError',
