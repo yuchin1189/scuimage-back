@@ -18,24 +18,26 @@ mongoose
 
 const app = express()
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      // console.log('origin', origin) // 觀察 origin
-      // postman 沒有 origin
-      if (
-        origin === undefined ||
-        origin.includes('localhost') ||
-        origin.includes('127.0.0.1') ||
-        origin.includes('github.io')
-      ) {
-        callback(null, true)
-      } else {
-        callback(new Error('CORS', false))
-      }
-    },
-  }),
-)
+// app.use(
+//   cors({
+//     origin(origin, callback) {
+//       // console.log('origin', origin) // 觀察 origin
+//       // postman 沒有 origin
+//       if (
+//         origin === undefined ||
+//         origin.includes('localhost') ||
+//         origin.includes('127.0.0.1') ||
+//         origin.includes('github.io')
+//       ) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('CORS', false))
+//       }
+//     },
+//   }),
+// )
+
+app.use(cors())
 
 app.use(express.json())
 // eslint-disable-next-line no-unused-vars
